@@ -1,5 +1,16 @@
 <?php
   require('../vendor/autoload.php');
+
+  $dsn = "pgsql:"
+    . "host=ec2-34-230-153-41.compute-1.amazonaws.com;"
+    . "dbname=ddjch665qb09r6;"
+    . "user=gyzavjeurpfmax;"
+    . "port=5432;"
+    . "sslmode=require;"
+    . "password=6a4681fdbc4ad33ad34787a4680471b8e63a6a0e49c6bc6b98c425ba37a508c9";
+
+  $db = new PDO($dsn);
+/*
 // Create connection
 // Localhost is the server name, 
 // root is the username, 
@@ -7,7 +18,7 @@
 // database name is gfg
 $db = new mysqli('localhost', 'root', '', 'engage');
   
-// Checking connection
+// Checking connection*/
 if ($db->connect_errno) {
   echo "Failed " . $db->connect_error;
   exit();
@@ -24,7 +35,7 @@ if ($db->connect_errno) {
                $result = $db->query('SELECT * FROM books 
                 WHERE bookID <= 10');
                 
-                foreach($result as $row) {
+                while($row = $result->fetch(PDO::FETCH_ASSOC)) {
                 ?>
                 
                 <div class="col-md-6">
@@ -53,6 +64,7 @@ if ($db->connect_errno) {
           </div>
         </div>
         <?php
+        $result->closeCursor();
                 }
     ?>
     </div>
