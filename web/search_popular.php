@@ -25,12 +25,10 @@ require('../vendor/autoload.php');
       exit();
     }
     
-    $command = escapeshellcmd("python train_popular.py $title");
+    $command = escapeshellcmd("python books.py $title");
     $output = shell_exec($command);  
     $array = explode("\"", $output);
 
-    echo $output;
-    /*
     include('recommendations.html');
     ?>
 
@@ -77,7 +75,7 @@ require('../vendor/autoload.php');
           </div>
         </div>
         <?php
-            }}*/
+            }}
     ?>
     </div>
     </section>

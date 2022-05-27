@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import pickle 
-import models.train_popular as train_popular
+import train_popular
 import json
 
 df2 = pickle.loads(train_popular.pickledModel)
