@@ -9,8 +9,8 @@ from sklearn.preprocessing import MinMaxScaler
 
 import os
 
-print(os.getcwd())
-#df = pd.read_csv('books.csv',error_bad_lines = False)
+#print(os.getcwd())
+df = pd.read_csv('/books.csv',error_bad_lines = False)
 #df.head()
 
 #df.fillna(0,inplace=True)
