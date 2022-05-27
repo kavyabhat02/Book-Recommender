@@ -43,7 +43,7 @@ if ($db->connect_errno) {
             <div class="img-box">
               <h4 class="blog_date">
                 <span>
-                <?php echo $row['bookID'];?>
+                <?php echo $row['bookid'];?>
                 </span>
               </h4>
             </div>
