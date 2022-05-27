@@ -29,6 +29,8 @@ require('../vendor/autoload.php');
     $output = shell_exec($command);  
     $array = explode("\"", $output);
 
+    echo $output;
+    /*
     include('recommendations.html');
     ?>
 
@@ -75,7 +77,7 @@ require('../vendor/autoload.php');
           </div>
         </div>
         <?php
-            }}
+            }}*/
     ?>
     </div>
     </section>
