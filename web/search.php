@@ -33,7 +33,7 @@ if ($db->connect_errno) {
 
         <?php
                $result = $db->query('SELECT * FROM books 
-                WHERE bookID <= 10');
+                WHERE bookid <= 10');
                 
                 while($row = $result->fetch(PDO::FETCH_ASSOC)) {
                 ?>

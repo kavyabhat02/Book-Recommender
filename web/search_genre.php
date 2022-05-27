@@ -4,7 +4,15 @@ require('../vendor/autoload.php');
     //$title = escapeshellarg($title);
     //echo $title;
 
-    $db = new mysqli('localhost', 'root', '', 'engage');
+    $dsn = "pgsql:"
+    . "host=ec2-34-230-153-41.compute-1.amazonaws.com;"
+    . "dbname=ddjch665qb09r6;"
+    . "user=gyzavjeurpfmax;"
+    . "port=5432;"
+    . "sslmode=require;"
+    . "password=6a4681fdbc4ad33ad34787a4680471b8e63a6a0e49c6bc6b98c425ba37a508c9";
+
+  $db = new PDO($dsn);
   
     // Create connection 
     // Localhost is the server name, 
@@ -24,7 +32,7 @@ require('../vendor/autoload.php');
     $array = [];
 
     //search for similar titles from database
-    foreach($result as $row) {
+    while($row = $result->fetch(PDO::FETCH_ASSOC)) {
       $currentTitle = $row['title'];
       //echo $currentTitle;
       array_push($array, $currentTitle);
@@ -61,7 +69,7 @@ require('../vendor/autoload.php');
         WHERE title LIKE '%$currentTitle%' OR lower(title) = '%$currentTitle%' OR upper(title) = '%$currentTitle%'");
       $i += 1;
       $count += 1;
-      foreach($result as $row) {
+      while($row = $result->fetch(PDO::FETCH_ASSOC)) {
       ?>
                 
       <div class="col-md-6">
