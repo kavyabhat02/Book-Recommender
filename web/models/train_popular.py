@@ -1,8 +1,6 @@
 #!/usr/bin/env python
-import pickle
-uploaded = open("books.csv", 'r')
-
 import pandas as pd
+import pickle
 from sklearn import neighbors
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
@@ -19,6 +17,9 @@ df2.loc[ (df2['average_rating'] > 1) & (df2['average_rating'] <= 2), 'rating_bet
 df2.loc[ (df2['average_rating'] > 2) & (df2['average_rating'] <= 3), 'rating_between'] = "between 2 and 3"
 df2.loc[ (df2['average_rating'] > 3) & (df2['average_rating'] <= 4), 'rating_between'] = "between 3 and 4"
 df2.loc[ (df2['average_rating'] > 4) & (df2['average_rating'] <= 5), 'rating_between'] = "between 4 and 5"
+
+#df.replace([np.inf, -np.inf], np.nan, inplace=True)
+#df.fillna(999, inplace=True)
 
 rating_df = pd.get_dummies(df2['rating_between'])
 
