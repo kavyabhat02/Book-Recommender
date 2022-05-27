@@ -64,8 +64,8 @@ if ($db->connect_errno) {
           </div>
         </div>
         <?php
-        $result->closeCursor();
                 }
+                $result->closeCursor();
     ?>
     </div>
     </section>
