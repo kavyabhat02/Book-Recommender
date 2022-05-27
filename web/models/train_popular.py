@@ -2,9 +2,7 @@
 import pickle
 uploaded = open("books.csv", 'r')
 
-import numpy as np 
 import pandas as pd
-from sklearn.cluster import KMeans
 from sklearn import neighbors
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
