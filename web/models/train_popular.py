@@ -7,7 +7,7 @@ from sklearn import neighbors
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
 
-df = pd.read_csv('books.csv',error_bad_lines = False)
+df = pd.read_csv(r"./web/books.csv")
 df.head()
 
 df.fillna(0,inplace=True)
@@ -22,7 +22,9 @@ df2.loc[ (df2['average_rating'] > 4) & (df2['average_rating'] <= 5), 'rating_bet
 
 rating_df = pd.get_dummies(df2['rating_between'])
 
-features = pd.concat([rating_df, df2['average_rating'], df2['ratings_count']], axis=1)
+features = pd.concat([rating_df, 
+                      df2['average_rating'], 
+                      df2['ratings_count']], axis=1)
 
 from sklearn.preprocessing import MinMaxScaler
 min_max_scaler = MinMaxScaler()

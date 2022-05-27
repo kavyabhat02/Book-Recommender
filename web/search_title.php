@@ -1,10 +1,9 @@
 <?php
-require('../vendor/autoload.php');
-    $title = $_GET['title'];
-    //$title = escapeshellarg($title);
-    //echo $title;
-
-    $dsn = "pgsql:"
+  require('../vendor/autoload.php');
+  $title = $_GET['title'];
+  
+  //connect to database
+  $dsn = "pgsql:"
     . "host=ec2-34-230-153-41.compute-1.amazonaws.com;"
     . "dbname=ddjch665qb09r6;"
     . "user=gyzavjeurpfmax;"
@@ -14,92 +13,77 @@ require('../vendor/autoload.php');
 
   $db = new PDO($dsn);
   
-    // Create connection 
-    // Localhost is the server name, 
-    // root is the username,  
-    // password is empty
-    // database name is gfg 
-    // Checking connection 
-    if ($db->connect_errno) {
+  if ($db->connect_errno) {
       echo "Failed " . $db->connect_error;
       exit();
-    }
+  }
 
-    $title = pg_escape_string($title);
-    $result = $db->query("SELECT * FROM books 
+  $title = pg_escape_string($title);
+  $result = $db->query("SELECT * FROM books 
     WHERE title LIKE '%$title%' OR lower(title) LIKE '%$title%' OR upper(title) LIKE '%$title%'");
 
-    $array = [];
+  $titleList = [];
 
-    //search for similar titles from database
-    while($row = $result->fetch(PDO::FETCH_ASSOC)) {
-      $currentTitle = $row['title'];
-      //echo $currentTitle;
-      array_push($array, $currentTitle);
-    }
+  //search for similar titles from database
+  while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+    $currentTitle = $row['title'];
+    array_push($titleList, $currentTitle);
+  }
 
+  $i = 0;
+
+  include('recommendations.html');
+?>
+
+<section class="blog_section layout_padding">
+  <div class="row">
+
+  <?php
     $i = 0;
-
-    /*
-    $recommendationArray = [];
-    while($i < count($array)) {
-      $currentTitle = $array[$i];
-      $command = escapeshellcmd("python books.py $currentTitle");
-      $output = shell_exec($command);
+    $count = 0;
+    while($i < count($array) && $count < 20) {
+      $currentTitle = pg_escape_string($titleList[$i]);
       
-      array_push($array, explode("\"", $output));
-    }*/
-
-    include('recommendations.html');
-    ?>
-
-    <section class="blog_section layout_padding">
-    <div class="row">
-
-    
-    <?php
-      $i = 0;
-      $count = 0;
-      while($i < count($array) && $count < 20) {
-                
-      $currentTitle = $array[$i];
-          
-      $currentTitle = pg_escape_string($currentTitle);
+      //get book details from database
       $result = $db->query("SELECT * FROM books 
         WHERE title LIKE '%$currentTitle%' OR lower(title) = '%$currentTitle%' OR upper(title) = '%$currentTitle%'");
       $i += 1;
       $count += 1;
                 
       while($row = $result->fetch(PDO::FETCH_ASSOC)) {
-      ?>
+  ?>
                 
-      <div class="col-md-6">
-      <div class="box">
+  <div class="col-md-6">
+    <div class="box">
       <div class="img-box">
-      <h4 class="blog_date">
-        <span>
-          <?php echo $row['bookid'];?>
-        </span>
-      </h4>
+        <h4 class="blog_date">
+          <span>
+            <?php echo $row['bookid'];?>
+          </span>
+        </h4>
       </div>
+    
       <div class="detail-box">
-              <h5>
-              <?php echo $row['title'];?>
-              </h5>
-              <p>
-                Author: <?php echo $row['author'];?>
-              </p>
-              <p>
-                Average Rating: <?php echo $row['average_rating'];?>
-              </p>
-              <p>
-                Categories: <?php echo $row['categories'];?>
-              </p>
-            </div>
-          </div>
-        </div>
-        <?php
-            }}
-    ?>
+        <h5>
+          <?php echo $row['title'];?>
+        </h5>
+        <p>
+          Author: <?php echo $row['author'];?>
+        </p>
+        <p>
+          Average Rating: <?php echo $row['average_rating'];?>
+        </p>
+        <p>
+          Categories: <?php echo $row['categories'];?>
+        </p>
+      </div>
     </div>
-    </section>
+  </div>
+        
+  <?php
+      }
+    }
+  ?>
+
+  </div>
+</section>
