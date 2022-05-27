@@ -7,7 +7,7 @@ from sklearn import neighbors
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
 
-df = pd.read_csv('./web/books.csv')
+df = pd.read_csv('../books.csv')
 df.head()
 
 df.fillna(0,inplace=True)
