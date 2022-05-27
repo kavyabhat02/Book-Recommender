@@ -25,7 +25,7 @@ require('../vendor/autoload.php');
       exit();
     }
 
-    $title = $db->real_escape_string($title);
+    $title = pg_escape_string($title);
     $result = $db->query("SELECT * FROM books 
     WHERE categories LIKE '%$title%' OR lower(categories) LIKE '%$title%' OR upper(categories) LIKE '%$title%'");
 
@@ -64,7 +64,7 @@ require('../vendor/autoload.php');
                 
       $currentTitle = $array[$i];
           
-      $currentTitle = $db->real_escape_string($currentTitle);
+      $currentTitle = pg_escape_string($currentTitle);
       $result = $db->query("SELECT * FROM books 
         WHERE title LIKE '%$currentTitle%' OR lower(title) = '%$currentTitle%' OR upper(title) = '%$currentTitle%'");
       $i += 1;

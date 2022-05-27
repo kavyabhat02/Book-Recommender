@@ -41,7 +41,7 @@ require('../vendor/autoload.php');
                 
       $currentTitle = $array[$i];
           
-      $currentTitle = $db->real_escape_string($currentTitle);
+      $currentTitle = pg_escape_string($currentTitle);
       $result = $db->query("SELECT * FROM books 
         WHERE title = '$currentTitle'");
       $i += 1;
