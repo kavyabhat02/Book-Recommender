@@ -25,7 +25,7 @@ require('../vendor/autoload.php');
       exit();
     }
     
-    $command = escapeshellcmd("python books.py $title");
+    $command = escapeshellcmd("python train_popular.py $title");
     $output = shell_exec($command);  
     $array = explode("\"", $output);
 
