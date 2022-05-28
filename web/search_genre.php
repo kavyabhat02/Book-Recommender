@@ -60,7 +60,6 @@
   <div class="col-md-6">
     <div class="box">
       <div class="img-box">
-        <img src="images/b1.jpg" alt="">
         <h4 class="blog_date">
           <span>
             <?php echo $row['bookid'];?>

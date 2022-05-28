@@ -98,5 +98,32 @@
 
     </div>
 
+    <div class="col-md-6">
+      <div class="box">
+        <div class="img-box">
+          <h4 class="blog_date">
+            <span>
+              <?php echo $row['bookid'];?>
+            </span>
+          </h4>
+        </div>
+      
+        <div class="detail-box">
+          <h5>
+           Gilead
+          </h5>
+          <p>
+            Author: <?php echo $row['author'];?>
+          </p>
+          <p>
+            Average Rating: <?php echo $row['average_rating'];?>
+          </p>
+          <p>
+            Categories: <?php echo $row['categories'];?>
+          </p>
+        </div>
+      </div>
+    </div>
+
 </body>
 </html>
