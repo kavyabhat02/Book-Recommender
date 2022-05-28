@@ -54,16 +54,12 @@
       $count += 1;
                 
       while($row = $result->fetch(PDO::FETCH_ASSOC)) {
-        $url = "images/".$row['title'].".jpg";
-        if(!file_exists($url)) {
-          $url = "images/samplebook.jpg";
-        } 
   ?>
                 
   <div class="col-md-6">
     <div class="box">
       <div class="img-box">
-        <img src=<?php $url ?> alt="">
+        <img src="images/samplebook.jpg" alt="">
         <h4 class="blog_date">
           <span>
             <?php echo $row['bookid'];?>
