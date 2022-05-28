@@ -28,9 +28,19 @@ from sklearn.preprocessing import MinMaxScaler
 min_max_scaler = MinMaxScaler()
 features = min_max_scaler.fit_transform(features)
 
-model = neighbors.NearestNeighbors(n_neighbors=6, algorithm='ball_tree')
-model.fit(features)
-dist, idlist = model.kneighbors(features)
+model1 = neighbors.NearestNeighbors(n_neighbors=6, algorithm='brute_force')
+model1.fit(features)
+dist1, idlist1 = model1.kneighbors(features)
 
-pickledModel = pickle.dumps(df2)
-pickledList = pickle.dumps(idlist)
+model2 = neighbors.NearestNeighbors(n_neighbors=6, algorithm='ball_tree')
+model2.fit(features)
+dist2, idlist2 = model2.kneighbors(features)
+
+model3 = neighbors.NearestNeighbors(n_neighbors=6, algorithm='kd_tree')
+model3.fit(features)
+dist3, idlist3 = model3.kneighbors(features)
+
+pickledDF = pickle.dumps(df2)
+pickledList1 = pickle.dumps(idlist1)
+pickledList2 = pickle.dumps(idlist2)
+pickledList3 = pickle.dumps(idlist3)

@@ -1,8 +1,12 @@
 <?php
   require('../vendor/autoload.php');
+  
   $title = $_GET['title'];
   $title = escapeshellarg($title);
   
+  $algorithm = $_GET['algo'];
+  $algorithm = escapeshellarg($algorithm);
+
   //connect to database
   $dsn = "pgsql:"
     . "host=ec2-34-230-153-41.compute-1.amazonaws.com;"
@@ -20,7 +24,7 @@
   }
     
   //call python script to obtain recommendations
-  $command = escapeshellcmd("python books.py $title");
+  $command = escapeshellcmd("python books.py $title $algorithm");
   $output = shell_exec($command);  
   $titleList = explode("\"", $output);
 
