@@ -1,10 +1,10 @@
-# Book-Recommender
+# Book Buddy - A recommendation engine
 
 ## Book Buddy is a book recommendation system, built as the solution to the Algorithms track of the Microsoft Engage Challenge 2022.
 
 Demo video link: 
 
-Hosted web application: [https://git.heroku.com/kavya-bhat-bookbuddy.git](https://kavya-bhat-bookbuddy.herokuapp.com/)
+Hosted web application: [https://kavya-bhat-bookbuddy.herokuapp.com/](https://kavya-bhat-bookbuddy.herokuapp.com/)
 
 ### 📌 Table of Contents
 * [Features](#features)
