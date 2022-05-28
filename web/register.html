@@ -1,6 +1,4 @@
-<?php
-  session_start();
-?>
+<script src="data.js"></script>
 <head>
   <!-- Basic -->
   <meta charset="utf-8" />
@@ -34,19 +32,12 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6 ">
-
-          <?php
-            if(isset($_SESSION['status'])) {
-                echo "<h5 class='alert alert-success'>".$_SESSION['status']."</h5>";
-                unset($_SESSION['status']);
-            }
-          ?>
           <div class="heading_container ">
             <h2 class="">
               Register a new User
             </h2>
           </div>
-          <form action="handleRegister.php" method="post">
+          <form action="" method="post">
             <div>
               <input type="text" name="users_name" placeholder="Name" />
             </div>
@@ -60,7 +51,7 @@
               <input type="password" name="password" placeholder="Password" />
             </div>
             <div class="btn-box">
-              <button type="submit" name="register_btn">
+              <button type="submit" name="register_btn" onclick="UserRegister()">
                 Register
               </button>
             </div>

@@ -60,7 +60,7 @@
                 <a class="nav-link" href="search.php"> Books </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="register.php"> Register </a>
+                <a class="nav-link" href="register.html"> Register </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="login.php"> Login </a>

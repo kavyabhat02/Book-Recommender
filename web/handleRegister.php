@@ -15,13 +15,7 @@ if(isset($_POST['register_btn'])) {
         'displayName' => $name,
     ];
 
-    $createdUser = null;
-    echo "got here";
-    try {
-      $createdUser = $auth->createUser($userProperties);
-    } catch (GuzzleHttp\Exception\ClientException $exception) {
-        $responseBody = $exception->getResponse()->getBody(true);
-    }
+    $createdUser = $auth->createUser($userProperties);
 
     if($createdUser) {
         $_SESSION['status'] = "User created successfully.";
