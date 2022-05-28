@@ -15,7 +15,6 @@ if(isset($_POST['register_btn'])) {
         'displayName' => $name,
     ];
 
-    echo print_r($userProperties);
     $createdUser = $auth->createUser($userProperties);
 
     if($createdUser) {
