@@ -41,7 +41,7 @@
   <?php
     $i = 0;
     $count = 0;
-    while($i < count($array) && $count < 20) {
+    while($i < count($titleList) && $count < 20) {
       $currentTitle = pg_escape_string($titleList[$i]);
       
       //get book details from database
