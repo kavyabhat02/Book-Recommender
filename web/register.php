@@ -60,7 +60,7 @@
               <input type="password" name="password" placeholder="Password" />
             </div>
             <div class="btn-box">
-              <button name="register_btn">
+              <button type="submit" name="register_btn">
                 Register
               </button>
             </div>
