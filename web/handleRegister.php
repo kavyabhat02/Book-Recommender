@@ -3,7 +3,6 @@ session_start();
 include('firebasedb.php'); 
 
 if(isset($_POST['register_btn'])) {
-    echo "here";
     $name = $_POST['users_name'];
     $email = $_POST['email'];
     $phone = $_POST['phone_number'];
@@ -19,7 +18,6 @@ if(isset($_POST['register_btn'])) {
     
     $createdUser = $auth->createUser($userProperties);
 
-    
     if($createdUser) {
         $_SESSION['status'] = "User created successfully.";
         header('Location: register.php');
