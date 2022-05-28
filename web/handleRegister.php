@@ -1,9 +1,7 @@
 <?php
 session_start();
 include('firebasedb.php'); 
-echo "here";
 if(isset($_POST['register_btn'])) {
-    echo "inside";
     $name = $_POST['users_name'];
     $email = $_POST['email'];
     $phone = $_POST['phone_number'];
