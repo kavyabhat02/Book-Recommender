@@ -28,7 +28,7 @@ from sklearn.preprocessing import MinMaxScaler
 min_max_scaler = MinMaxScaler()
 features = min_max_scaler.fit_transform(features)
 
-model1 = neighbors.NearestNeighbors(n_neighbors=6, algorithm='brute_force')
+model1 = neighbors.NearestNeighbors(n_neighbors=6, algorithm='brute')
 model1.fit(features)
 dist1, idlist1 = model1.kneighbors(features)
 
