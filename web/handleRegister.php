@@ -16,10 +16,9 @@ if(isset($_POST['register_btn'])) {
         'displayName' => $name,
     ];
 
+    echo print_r($userProperties);
     $createdUser = $auth->createUser($userProperties);
 
-    echo "created user";
-    
     if($createdUser) {
         $_SESSION['status'] = "User created successfully.";
         header('Location: register.php');
