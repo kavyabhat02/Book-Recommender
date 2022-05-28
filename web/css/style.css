@@ -508,10 +508,12 @@ a:focus {
 }
 
 .blog_section {
+  padding: 2%;
   background-color: #f5f6f9;
 }
 
 .blog_section .box {
+  border-radius: 25px;
   margin-top: 55px;
   -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
           box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
@@ -519,6 +521,7 @@ a:focus {
 
 .blog_section .box .img-box {
   position: relative;
+  border-radius: 25px;
 }
 
 .blog_section .box .img-box .blog_date {
@@ -548,23 +551,28 @@ a:focus {
 
 .blog_section .box .img-box img {
   width: 100%;
+  border-radius: 25px;
 }
 
 .blog_section .box .detail-box {
   padding: 45px 25px 25px 25px;
   background: #ffffff;
+  border-radius: 25px;
 }
 
 .blog_section .box .detail-box h5 {
   font-weight: bold;
+  border-radius: 25px;
 }
 
 .blog_section .box .detail-box p {
   font-size: 15px;
+  border-radius: 25px;
 }
 
 .blog_section .box .detail-box a {
   color: #44b89d;
+  border-radius: 25px;
 }
 
 .contact_section h2 {
