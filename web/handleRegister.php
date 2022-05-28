@@ -18,7 +18,7 @@ if(isset($_POST['register_btn'])) {
     $createdUser = null;
     try {
       $createdUser = $auth->createUser($userProperties);
-    } catch (ClientErrorResponseException $exception) {
+    } catch (GuzzleHttp\Exception\ClientException $exception) {
         $responseBody = $exception->getResponse()->getBody(true);
     }
 
