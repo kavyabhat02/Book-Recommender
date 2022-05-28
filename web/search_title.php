@@ -90,7 +90,7 @@
     $execution_time = $end_time - $start_time;
   ?>
   </div>
-  <div>
+  <div style="text-align:center;">
     Search was processed in <?php echo $execution_time ?> seconds.
   </div>
 </section>

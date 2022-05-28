@@ -1,5 +1,6 @@
 <?php
   require('../vendor/autoload.php');
+  $start_time = microtime(true);
   $title = $_GET['title'];
 
   //details of Heroku Postgres Database
@@ -86,7 +87,11 @@
   <?php
       }
     }
+    $end_time = microtime(true);
+    $execution_time = $end_time - $start_time;
   ?>
-  
+  </div>
+  <div style="text-align:center;">
+    Search was processed in <?php echo $execution_time ?> seconds.
   </div>
 </section>
