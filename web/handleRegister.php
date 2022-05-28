@@ -7,15 +7,13 @@ if(isset($_POST['register_btn'])) {
     $phone = $_POST['phone_number'];
     $password = $_POST['password'];
 
-    $userProperties = [
-        'email' => $email,
-        'emailVerified' => false,
-        'phoneNumber' => $phone,
-        'password' => '+91'.$password,
-        'displayName' => $name,
-    ];
-    
-    $createdUser = $auth->createUser($userProperties);
+    $request = \Kreait\Auth\Request\CreateUser::new()
+    ->withUnverifiedEmail($email)
+    ->withPhoneNumber('+91'.$phone)
+    ->withClearTextPassword($password)
+    ->withDisplayName($name);
+
+    $createdUser = $auth->createUser($request);
 
     if($createdUser) {
         $_SESSION['status'] = "User created successfully.";
