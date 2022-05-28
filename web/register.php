@@ -46,7 +46,7 @@
               Register a new User
             </h2>
           </div>
-          <form action="handleRegister.php">
+          <form action="handleRegister.php" method="POST">
             <div>
               <input type="text" name="users_name" placeholder="Name" />
             </div>

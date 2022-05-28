@@ -1,5 +1,5 @@
 <?php
-  require('../vendor/autoload.php');
+  require __DIR__."/../vendor/autoload.php";
 
   $start_time = microtime(true);
 
@@ -93,4 +93,4 @@
   <div style="text-align:center;">
     Search was processed in <?php echo $execution_time ?> seconds.
   </div>
-</section>
+</section>*/
