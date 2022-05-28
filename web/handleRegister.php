@@ -12,7 +12,7 @@ if(isset($_POST['register_btn'])) {
         'email' => $email,
         'emailVerified' => false,
         'phoneNumber' => $phone,
-        'password' => '+91'.$passowrd,
+        'password' => '+91'.$password,
         'displayName' => $name,
     ];
     
