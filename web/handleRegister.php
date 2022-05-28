@@ -1,7 +1,6 @@
 <?php
 session_start();
-use Kreait\Firebase\Contract\Auth;
-$auth = $factory->createAuth();
+include('firebasedb.php'); 
 
 if(isset($_POST['register_btn'])) {
     $name = $_POST['users_name'];
