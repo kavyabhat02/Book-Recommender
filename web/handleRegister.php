@@ -10,7 +10,6 @@ if(isset($_POST['register_btn'])) {
 
     $userProperties = [
         'email' => $email,
-        'emailVerified' => false,
         'phoneNumber' => $phone,
         'password' => $password,
         'displayName' => $name,
