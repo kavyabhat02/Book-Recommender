@@ -15,7 +15,12 @@ if(isset($_POST['register_btn'])) {
         'displayName' => $name,
     ];
 
-    $createdUser = $auth->createUser($userProperties);
+    $createdUser = null;
+    try {
+      $createdUser = $auth->createUser($userProperties);
+    } catch (ClientErrorResponseException $exception) {
+        $responseBody = $exception->getResponse()->getBody(true);
+    }
 
     if($createdUser) {
         $_SESSION['status'] = "User created successfully.";

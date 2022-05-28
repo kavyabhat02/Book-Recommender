@@ -93,4 +93,4 @@
   <div style="text-align:center;">
     Search was processed in <?php echo $execution_time ?> seconds.
   </div>
-</section>*/
+</section>
