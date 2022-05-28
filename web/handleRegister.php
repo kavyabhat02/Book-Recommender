@@ -1,16 +1,12 @@
 <?php
 session_start();
 include('firebasedb.php'); 
+
 if(isset($_POST['register_btn'])) {
     $name = $_POST['users_name'];
     $email = $_POST['email'];
     $phone = $_POST['phone_number'];
     $password = $_POST['password'];
-
-    echo $name;
-    echo $email;
-    echo $phone;
-    echo $password;
 
     $userProperties = [
         'email' => $email,
@@ -20,9 +16,9 @@ if(isset($_POST['register_btn'])) {
         'displayName' => $name,
     ];
 
-    echo $userProperties;
-
     $createdUser = $auth->createUser($userProperties);
+
+    echo "created user";
     
     if($createdUser) {
         $_SESSION['status'] = "User created successfully.";
