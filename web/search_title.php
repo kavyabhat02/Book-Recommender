@@ -1,5 +1,8 @@
 <?php
   require('../vendor/autoload.php');
+
+  $start_time = microtime(true);
+
   $title = $_GET['title'];
   
   //connect to database
@@ -83,7 +86,11 @@
   <?php
       }
     }
+    $end_time = microtime(true);
+    $execution_time = $end_time - $start_time;
   ?>
-
+  </div>
+  <div>
+    Search was processed in <?php echo $execution_time ?> seconds.
   </div>
 </section>
