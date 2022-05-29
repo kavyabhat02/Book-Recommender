@@ -35,7 +35,7 @@
 
   $i = 0;
 
-  include(__DIR__.'/../html/recommendations.html');
+  include(__DIR__.'/recommendations.html');
 ?>
 
 <section class="blog_section layout_padding">

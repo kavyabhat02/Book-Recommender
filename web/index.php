@@ -54,7 +54,7 @@
                 <a class="nav-link pl-lg-0" href="index.php">Home <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="./html/categories.html">Categories</a>
+                <a class="nav-link" href="./php/categories.html">Categories</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="./php/search.php"> Books </a>

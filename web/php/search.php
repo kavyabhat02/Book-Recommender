@@ -17,7 +17,7 @@
     exit();
   }
 
-  include(__DIR__.'/../html/recommendations.html');
+  include(__DIR__.'/recommendations.html');
 ?>
 
 <div class="row">
