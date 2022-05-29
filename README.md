@@ -2,7 +2,7 @@
 
 ## Book Buddy is a book recommendation system, built as the solution to the Algorithms track of the Microsoft Engage Challenge 2022.
 
-Demo video link: 
+Demo video link: [Book Buddy Demo](https://youtu.be/oznWYe-4qwI)
 
 Hosted web application: [https://kavya-bhat-bookbuddy.herokuapp.com/](https://kavya-bhat-bookbuddy.herokuapp.com/)
 
