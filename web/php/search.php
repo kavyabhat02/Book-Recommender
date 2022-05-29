@@ -1,6 +1,6 @@
 <?php
   require __DIR__.'/../../vendor/autoload.php';
-
+  
   $dsn = "pgsql:"
     . "host=ec2-34-230-153-41.compute-1.amazonaws.com;"
     . "dbname=ddjch665qb09r6;"
@@ -17,8 +17,7 @@
     exit();
   }
 
-  
-  include('/../html/recommendations.html');
+  include(__DIR__.'/../html/recommendations.html');
 ?>
 
 <div class="row">

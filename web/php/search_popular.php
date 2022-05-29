@@ -29,7 +29,7 @@
   $output = shell_exec($command);  
   $titleList = explode("\"", $output);
 
-  include('/../html/recommendations.html');
+  include(__DIR__.'/../html/recommendations.html');
 ?>
 
 <!--- new section in html page --->

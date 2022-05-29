@@ -33,7 +33,7 @@
   }
 
   $i = 0;
-  include('/../html/recommendations.html'); 
+  include(__DIR__.'/../html/recommendations.html');
 ?>
 
 <!--begin new section in html page --->
