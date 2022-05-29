@@ -56,4 +56,4 @@ Feel free to [open an issue](https://github.com/kavyabhat02/Book-Recommender/iss
 
 <a id="feature-request"></a>
 ## ⭐ Feature Request
-- Feel free to [open an issue](https://github.com/kavyabhat02/Book-Recommender/issues) on GitHub to add any additional features you feel could enhance this project.  
+Feel free to [open an issue](https://github.com/kavyabhat02/Book-Recommender/issues) on GitHub to add any additional features you feel could enhance this project.  
