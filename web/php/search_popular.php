@@ -25,8 +25,7 @@
   }
     
   //call python script to obtain recommendations
-  $pathToFile =  __DIR__.'/../models/books.py';
-  $command = escapeshellcmd("python $pathToFile $title $algorithm");
+  $command = escapeshellcmd("python books.py $title $algorithm");
   $output = shell_exec($command);  
   $titleList = explode("\"", $output);
 
