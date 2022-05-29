@@ -1,5 +1,5 @@
 <?php
-  require('../vendor/autoload.php');
+  require __DIR__.'/../../vendor/autoload.php';
 
   $dsn = "pgsql:"
     . "host=ec2-34-230-153-41.compute-1.amazonaws.com;"
@@ -18,7 +18,7 @@
   }
 
   
-  include('recommendations.html');
+  include('/../html/recommendations.html');
 ?>
 
 <div class="row">
@@ -35,7 +35,7 @@
       <div class="img-box">
         <h4 class="blog_date">
           <span>
-            <?php echo $row['bookid'];?>
+            ID: <?php echo $row['bookid'];?>
           </span>
         </h4>
       </div>
@@ -61,7 +61,7 @@
   </div>
         
   <?php
-      }
+    }
     $result->closeCursor();
   ?>
 </div>

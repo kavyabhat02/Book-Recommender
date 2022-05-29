@@ -1,13 +1,10 @@
 <?php
-  require('../vendor/autoload.php');
-  $start_time = microtime(true);
-  
-  $title = $_GET['title'];
-  $title = escapeshellarg($title);
-  
-  $algorithm = $_GET['algo'];
-  $algorithm = escapeshellarg($algorithm);
+  require __DIR__."/../../vendor/autoload.php";
 
+  $start_time = microtime(true);
+
+  $title = $_GET['title'];
+  
   //connect to database
   $dsn = "pgsql:"
     . "host=ec2-34-230-153-41.compute-1.amazonaws.com;"
@@ -20,32 +17,41 @@
   $db = new PDO($dsn);
   
   if ($db->connect_errno) {
-    echo "Failed " . $db->connect_error;
-    exit();
+      echo "Failed " . $db->connect_error;
+      exit();
   }
-    
-  //call python script to obtain recommendations
-  $command = escapeshellcmd("python books.py $title $algorithm");
-  $output = shell_exec($command);  
-  $titleList = explode("\"", $output);
+
+  $title = pg_escape_string($title);
+  $result = $db->query("SELECT * FROM books 
+    WHERE title LIKE '%$title%' OR lower(title) LIKE '%$title%' OR upper(title) LIKE '%$title%'");
+
+  $titleList = [];
+
+  //search for similar titles from database
+  while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+    $currentTitle = $row['title'];
+    array_push($titleList, $currentTitle);
+  }
+
+  $i = 0;
 
   include('recommendations.html');
 ?>
 
-<!--- new section in html page --->
 <section class="blog_section layout_padding">
   <div class="row">
-    
+
   <?php
     $i = 0;
-    //iterate through list of recommendations
-    while($i < count($titleList)) {
+    $count = 0;
+    while($i < count($titleList) && $count < 20) {
       $currentTitle = pg_escape_string($titleList[$i]);
-
-      //query to database to get all details of listed book
+      
+      //get book details from database
       $result = $db->query("SELECT * FROM books 
-        WHERE title = '$currentTitle'");
+        WHERE title LIKE '%$currentTitle%' OR lower(title) = '%$currentTitle%' OR upper(title) = '%$currentTitle%'");
       $i += 1;
+      $count += 1;
                 
       while($row = $result->fetch(PDO::FETCH_ASSOC)) {
   ?>
@@ -55,11 +61,11 @@
       <div class="img-box">
         <h4 class="blog_date">
           <span>
-            <?php echo $row['bookid'];?>
+            ID: <?php echo $row['bookid'];?>
           </span>
         </h4>
       </div>
-      
+    
       <div class="detail-box">
         <h5>
           <?php echo $row['title'];?>
@@ -76,7 +82,7 @@
       </div>
     </div>
   </div>
-  
+        
   <?php
       }
     }

@@ -1,9 +1,14 @@
 <?php
-  require('../vendor/autoload.php');
+  require __DIR__."/../../vendor/autoload.php";
   $start_time = microtime(true);
+  
   $title = $_GET['title'];
+  $title = escapeshellarg($title);
+  
+  $algorithm = $_GET['algo'];
+  $algorithm = escapeshellarg($algorithm);
 
-  //details of Heroku Postgres Database
+  //connect to database
   $dsn = "pgsql:"
     . "host=ec2-34-230-153-41.compute-1.amazonaws.com;"
     . "dbname=ddjch665qb09r6;"
@@ -12,48 +17,36 @@
     . "sslmode=require;"
     . "password=6a4681fdbc4ad33ad34787a4680471b8e63a6a0e49c6bc6b98c425ba37a508c9";
 
-  //connect to database
   $db = new PDO($dsn);
   
   if ($db->connect_errno) {
     echo "Failed " . $db->connect_error;
     exit();
   }
+    
+  //call python script to obtain recommendations
+  $command = escapeshellcmd("python /../models/books.py $title $algorithm");
+  $output = shell_exec($command);  
+  $titleList = explode("\"", $output);
 
-  $title = pg_escape_string($title);
-  $result = $db->query("SELECT * FROM books 
-    WHERE categories LIKE '%$title%' OR lower(categories) LIKE '%$title%' OR upper(categories) LIKE '%$title%'");
-
-  $titleList = [];
-
-  //search for similar titles from database
-  while($row = $result->fetch(PDO::FETCH_ASSOC)) {
-    $currentTitle = $row['title'];
-    array_push($titleList, $currentTitle); //add to array of results
-  }
-
-  $i = 0;
-  include('recommendations.html'); 
+  include('/../html/recommendations.html');
 ?>
 
-<!--begin new section in html page --->
-
+<!--- new section in html page --->
 <section class="blog_section layout_padding">
-<div class="row">
-
+  <div class="row">
+    
   <?php
     $i = 0;
-    $count = 0;
-
-    //iterate through 20 items of titleList
-    while($i < count($titleList) && $count < 20) {
+    //iterate through list of recommendations
+    while($i < count($titleList)) {
       $currentTitle = pg_escape_string($titleList[$i]);
+
+      //query to database to get all details of listed book
       $result = $db->query("SELECT * FROM books 
-        WHERE title LIKE '%$currentTitle%' OR lower(title) = '%$currentTitle%' OR upper(title) = '%$currentTitle%'");
+        WHERE title = '$currentTitle'");
       $i += 1;
-      $count += 1;
-      
-      //display all books in query result
+                
       while($row = $result->fetch(PDO::FETCH_ASSOC)) {
   ?>
                 
@@ -62,11 +55,11 @@
       <div class="img-box">
         <h4 class="blog_date">
           <span>
-            <?php echo $row['bookid'];?>
+            ID: <?php echo $row['bookid'];?>
           </span>
         </h4>
       </div>
-          
+      
       <div class="detail-box">
         <h5>
           <?php echo $row['title'];?>

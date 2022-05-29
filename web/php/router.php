@@ -1,5 +1,6 @@
 <?php
-  require('../vendor/autoload.php');
+  require __DIR__."/../../vendor/autoload.php";
+  
   $option = $_POST['optionList']; //get selected option from dropdown menu
   $title = $_POST['title']; //get title entered by user
   $algorithm = $_POST['algo']; //get selected algorithm from dropdown

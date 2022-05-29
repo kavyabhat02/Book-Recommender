@@ -7,7 +7,7 @@ from sklearn import neighbors
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
 
-df = pd.read_csv(r"./web/books.csv")
+df = pd.read_csv('books.csv',error_bad_lines = False)
 df.head()
 
 df.fillna(0,inplace=True)
@@ -22,17 +22,25 @@ df2.loc[ (df2['average_rating'] > 4) & (df2['average_rating'] <= 5), 'rating_bet
 
 rating_df = pd.get_dummies(df2['rating_between'])
 
-features = pd.concat([rating_df, 
-                      df2['average_rating'], 
-                      df2['ratings_count']], axis=1)
+features = pd.concat([rating_df, df2['average_rating'], df2['ratings_count']], axis=1)
 
 from sklearn.preprocessing import MinMaxScaler
 min_max_scaler = MinMaxScaler()
 features = min_max_scaler.fit_transform(features)
 
-model = neighbors.NearestNeighbors(n_neighbors=6, algorithm='ball_tree')
-model.fit(features)
-dist, idlist = model.kneighbors(features)
+model1 = neighbors.NearestNeighbors(n_neighbors=6, algorithm='brute')
+model1.fit(features)
+dist1, idlist1 = model1.kneighbors(features)
 
-pickledModel = pickle.dumps(df2)
-pickledList = pickle.dumps(idlist)
+model2 = neighbors.NearestNeighbors(n_neighbors=6, algorithm='ball_tree')
+model2.fit(features)
+dist2, idlist2 = model2.kneighbors(features)
+
+model3 = neighbors.NearestNeighbors(n_neighbors=6, algorithm='kd_tree')
+model3.fit(features)
+dist3, idlist3 = model3.kneighbors(features)
+
+pickledDF = pickle.dumps(df2)
+pickledList1 = pickle.dumps(idlist1)
+pickledList2 = pickle.dumps(idlist2)
+pickledList3 = pickle.dumps(idlist3)

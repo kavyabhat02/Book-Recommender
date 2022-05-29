@@ -1,11 +1,9 @@
 <?php
-  require __DIR__."/../vendor/autoload.php";
-
+  require __DIR__."/../../vendor/autoload.php";
   $start_time = microtime(true);
-
   $title = $_GET['title'];
-  
-  //connect to database
+
+  //details of Heroku Postgres Database
   $dsn = "pgsql:"
     . "host=ec2-34-230-153-41.compute-1.amazonaws.com;"
     . "dbname=ddjch665qb09r6;"
@@ -14,45 +12,48 @@
     . "sslmode=require;"
     . "password=6a4681fdbc4ad33ad34787a4680471b8e63a6a0e49c6bc6b98c425ba37a508c9";
 
+  //connect to database
   $db = new PDO($dsn);
   
   if ($db->connect_errno) {
-      echo "Failed " . $db->connect_error;
-      exit();
+    echo "Failed " . $db->connect_error;
+    exit();
   }
 
   $title = pg_escape_string($title);
   $result = $db->query("SELECT * FROM books 
-    WHERE title LIKE '%$title%' OR lower(title) LIKE '%$title%' OR upper(title) LIKE '%$title%'");
+    WHERE categories LIKE '%$title%' OR lower(categories) LIKE '%$title%' OR upper(categories) LIKE '%$title%'");
 
   $titleList = [];
 
   //search for similar titles from database
   while($row = $result->fetch(PDO::FETCH_ASSOC)) {
     $currentTitle = $row['title'];
-    array_push($titleList, $currentTitle);
+    array_push($titleList, $currentTitle); //add to array of results
   }
 
   $i = 0;
-
-  include('recommendations.html');
+  include('/../html/recommendations.html'); 
 ?>
 
+<!--begin new section in html page --->
+
 <section class="blog_section layout_padding">
-  <div class="row">
+<div class="row">
 
   <?php
     $i = 0;
     $count = 0;
+
+    //iterate through 20 items of titleList
     while($i < count($titleList) && $count < 20) {
       $currentTitle = pg_escape_string($titleList[$i]);
-      
-      //get book details from database
       $result = $db->query("SELECT * FROM books 
         WHERE title LIKE '%$currentTitle%' OR lower(title) = '%$currentTitle%' OR upper(title) = '%$currentTitle%'");
       $i += 1;
       $count += 1;
-                
+      
+      //display all books in query result
       while($row = $result->fetch(PDO::FETCH_ASSOC)) {
   ?>
                 
@@ -61,11 +62,11 @@
       <div class="img-box">
         <h4 class="blog_date">
           <span>
-            <?php echo $row['bookid'];?>
+            ID: <?php echo $row['bookid'];?>
           </span>
         </h4>
       </div>
-    
+          
       <div class="detail-box">
         <h5>
           <?php echo $row['title'];?>
@@ -82,7 +83,7 @@
       </div>
     </div>
   </div>
-        
+  
   <?php
       }
     }

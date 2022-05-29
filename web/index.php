@@ -57,7 +57,7 @@
                 <a class="nav-link" href="./html/categories.html">Categories</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="search.php"> Books </a>
+                <a class="nav-link" href="./php/search.php"> Books </a>
               </li>
             </ul>
           </div>
@@ -84,7 +84,7 @@
                     <p>
                       Find a new book today!
                     </p>
-                    <a href="search.php">
+                    <a href="./php/search.php">
                       Read More
                     </a>
                   </div>
@@ -110,10 +110,10 @@
                       Reading Needs
                     </h1>
                     <p>
-                      Have you been reading the same books over and over? Let that stop now, find a new book today!
+                      View the performance of different searching algorithms here.
                     </p>
-                    <a href="search.php">
-                      Read More
+                    <a href="./php/search.php">
+                      Explore
                     </a>
                   </div>
                 </div>
@@ -161,7 +161,7 @@
                 <img src="images/cat1.png" alt="">
               </div>
               <div class="detail-box">
-                <a href="search_title.php?title=fantasy" style="color: black; font-size:large;">
+                <a href="./php/search_genre.php?title=fantasy" style="color: black; font-size:large;">
                   <b>Fantasy</b>
                 </a>
                 <p>
@@ -177,7 +177,7 @@
                 <img src="images/cat2.png" alt="">
               </div>
               <div class="detail-box">
-                <a href="search_title.php?title=biography" style="color: black; font-size:large;">
+                <a href="./php/search_genre.php?title=biography" style="color: black; font-size:large;">
                   <b>Biography</b>
                 </a>
                 <p>
@@ -193,7 +193,7 @@
                 <img src="images/cat3.png" alt="">
               </div>
               <div class="detail-box">
-                <a href="search_title.php?title=history" style="color: black; font-size:large;">
+                <a href="./php/search_genre.php?title=history" style="color: black; font-size:large;">
                   <b>History</b>
                 </a>
                 <p>
@@ -209,7 +209,7 @@
                 <img src="images/cat4.png" alt="">
               </div>
               <div class="detail-box">
-                <a href="search_title.php?title=humor" style="color: black; font-size:large;">
+                <a href="./php/search_genre.php?title=humor" style="color: black; font-size:large;">
                   <b>Humor</b>
                 </a>
                 <p>
@@ -224,7 +224,7 @@
                 <img src="images/cat5.png" alt="">
               </div>
               <div class="detail-box">
-                <a href="search_title.php?title=drama" style="color: black; font-size:large;"">
+                <a href="./php/search_genre.php?title=drama" style="color: black; font-size:large;"">
                   <b>Drama</b>
                 </a>
                 <p>
@@ -240,7 +240,7 @@
                 <img src="images/cat6.png" alt="">
               </div>
               <div class="detail-box">
-                <a href = "search_title.php?title=philosophy" style="color: black; font-size:large;">
+                <a href = "./php/search_genre.php?title=philosophy" style="color: black; font-size:large;">
                   <b>Philosophy</b>
                 </a>
                 <p>
